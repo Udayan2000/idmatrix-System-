@@ -1,0 +1,583 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Student Registration Form</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+    font-family:'Poppins',sans-serif;
+    background:#f4f7fb;
+}
+
+/* MAIN SECTION */
+
+.main-section{
+    min-height:100vh;
+    width:100%;
+    padding:40px 20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+}
+
+/* BACKGROUND DESIGN */
+
+.bg-shape{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(80px);
+    z-index:0;
+}
+
+.shape1{
+    width:300px;
+    height:300px;
+    background:#60a5fa;
+    top:-100px;
+    left:-100px;
+    opacity:.25;
+}
+
+.shape2{
+    width:300px;
+    height:300px;
+    background:#38bdf8;
+    bottom:-100px;
+    right:-100px;
+    opacity:.25;
+}
+
+.grid-bg{
+    position:absolute;
+    inset:0;
+    background-image:
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size:40px 40px;
+    z-index:0;
+}
+
+/* CONTAINER */
+
+.container{
+    width:100%;
+    max-width:1200px;
+    position:relative;
+    z-index:2;
+}
+
+/* GLASS CARD */
+
+.glass-card{
+    width:100%;
+    background:rgba(255,255,255,0.7);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.5);
+    border-radius:30px;
+    padding:35px;
+    box-shadow:
+    0 10px 40px rgba(0,0,0,0.08);
+}
+
+/* HEADER */
+
+.form-header{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.form-header h1{
+    font-size:38px;
+    color:#0f172a;
+    margin-bottom:10px;
+    font-weight:700;
+}
+
+.form-header p{
+    color:#64748b;
+    font-size:15px;
+}
+
+/* FORM GRID */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:20px;
+}
+
+/* INPUT */
+
+.input-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.input-group label{
+    margin-bottom:8px;
+    color:#0f172a;
+    font-size:14px;
+    font-weight:600;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select{
+    width:100%;
+    border:none;
+    outline:none;
+    background:rgba(255,255,255,0.8);
+    border:1px solid rgba(148,163,184,0.2);
+    border-radius:16px;
+    padding:14px 16px;
+    font-size:14px;
+    transition:0.3s;
+    color:#0f172a;
+}
+
+.input-group textarea{
+    resize:none;
+    height:120px;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus{
+    border-color:#2563eb;
+    box-shadow:0 0 0 4px rgba(37,99,235,0.08);
+}
+
+/* PHOTO SECTION */
+
+.photo-wrapper{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:20px;
+}
+
+/* BOX */
+
+.box{
+    background:#ffffffc7;
+    border:1px solid rgba(148,163,184,0.15);
+    border-radius:24px;
+    padding:20px;
+}
+
+.box h3{
+    font-size:18px;
+    color:#0f172a;
+    margin-bottom:18px;
+}
+
+/* VIDEO */
+
+video,
+.preview-image{
+    width:100%;
+    height:280px;
+    object-fit:cover;
+    border-radius:20px;
+    background:#e2e8f0;
+}
+
+/* BUTTONS */
+
+.button-group{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:16px;
+}
+
+.btn{
+    border:none;
+    outline:none;
+    padding:13px 18px;
+    border-radius:14px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.btn-primary{
+    background:#2563eb;
+    color:#fff;
+}
+
+.btn-secondary{
+    background:#0ea5e9;
+    color:#fff;
+}
+
+.btn-danger{
+    background:#ef4444;
+    color:#fff;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+/* UPLOAD BOX */
+
+.upload-box{
+    width:100%;
+    height:280px;
+    border:2px dashed #cbd5e1;
+    border-radius:20px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    cursor:pointer;
+    transition:0.3s;
+    text-align:center;
+    padding:20px;
+    color:#64748b;
+}
+
+.upload-box:hover{
+    border-color:#2563eb;
+    background:#eff6ff;
+}
+
+/* HIDDEN FILE */
+
+.file-input{
+    display:none;
+}
+
+/* SAVE BUTTON */
+
+.save-btn{
+    width:100%;
+    margin-top:35px;
+    border:none;
+    outline:none;
+    background:linear-gradient(135deg,#2563eb,#0ea5e9);
+    color:#fff;
+    padding:18px;
+    border-radius:18px;
+    font-size:18px;
+    font-weight:700;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.save-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(37,99,235,0.2);
+}
+
+/* MOBILE */
+
+@media(max-width:991px){
+
+    .photo-wrapper{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .glass-card{
+        padding:25px;
+    }
+
+    .form-header h1{
+        font-size:28px;
+    }
+
+    .main-section{
+        padding:20px 15px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<section class="main-section">
+
+<div class="grid-bg"></div>
+
+<div class="bg-shape shape1"></div>
+<div class="bg-shape shape2"></div>
+
+<div class="container">
+
+<div class="glass-card">
+
+<div class="form-header">
+<h1>Student Registration</h1>
+<p>Professional Student ID Card Form System</p>
+</div>
+
+<form id="studentForm">
+
+<div class="form-grid">
+
+<div class="input-group">
+<label>Student Name</label>
+<input type="text" placeholder="Enter full name">
+</div>
+
+<div class="input-group">
+<label>Student ID</label>
+<input type="text" placeholder="Enter student ID">
+</div>
+
+<div class="input-group">
+<label>Email</label>
+<input type="email" placeholder="Enter email">
+</div>
+
+<div class="input-group">
+<label>Phone Number</label>
+<input type="text" placeholder="Enter phone number">
+</div>
+
+<div class="input-group">
+<label>Department</label>
+<input type="text" placeholder="Enter department">
+</div>
+
+<div class="input-group">
+<label>Course</label>
+<input type="text" placeholder="Enter course">
+</div>
+
+<div class="input-group">
+<label>Blood Group</label>
+<select>
+<option>Select Group</option>
+<option>A+</option>
+<option>B+</option>
+<option>O+</option>
+<option>AB+</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Date of Birth</label>
+<input type="date">
+</div>
+
+</div>
+
+<div class="input-group" style="margin-top:20px;">
+<label>Address</label>
+<textarea placeholder="Enter address"></textarea>
+</div>
+
+<!-- PHOTO SECTION -->
+
+<div class="photo-wrapper">
+
+<!-- CAMERA -->
+
+<div class="box">
+
+<h3>Camera</h3>
+
+<video id="video" autoplay playsinline></video>
+
+<div class="button-group">
+
+<button type="button" class="btn btn-primary" id="openCamera">
+Open Camera
+</button>
+
+<button type="button" class="btn btn-secondary" id="capturePhoto">
+Capture
+</button>
+
+</div>
+
+</div>
+
+<!-- UPLOAD -->
+
+<div class="box">
+
+<h3>Upload Image</h3>
+
+<label class="upload-box" for="fileUpload">
+<div>
+<h2>📁</h2>
+<p>Click to Upload Image</p>
+</div>
+</label>
+
+<input type="file" id="fileUpload" class="file-input" accept="image/*">
+
+</div>
+
+<!-- PREVIEW -->
+
+<div class="box">
+
+<h3>Preview</h3>
+
+<img id="previewImage" class="preview-image" style="display:none;">
+
+<div class="button-group">
+
+<button type="button" class="btn btn-danger" id="deletePhoto">
+Delete Photo
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<button type="submit" class="save-btn">
+Save Student Details
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</section>
+
+<script>
+
+const video = document.getElementById('video');
+const openCameraBtn = document.getElementById('openCamera');
+const captureBtn = document.getElementById('capturePhoto');
+const previewImage = document.getElementById('previewImage');
+const fileUpload = document.getElementById('fileUpload');
+const deletePhoto = document.getElementById('deletePhoto');
+
+let stream = null;
+
+/* OPEN CAMERA */
+
+openCameraBtn.addEventListener('click', async () => {
+
+    try{
+
+        stream = await navigator.mediaDevices.getUserMedia({
+            video:true
+        });
+
+        video.srcObject = stream;
+
+    }catch(error){
+
+        alert('Unable to access camera');
+
+    }
+
+});
+
+/* CAPTURE PHOTO */
+
+captureBtn.addEventListener('click', () => {
+
+    const canvas = document.createElement('canvas');
+
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    const context = canvas.getContext('2d');
+
+    context.drawImage(video,0,0);
+
+    const imageData = canvas.toDataURL('image/png');
+
+    previewImage.src = imageData;
+    previewImage.style.display = 'block';
+
+    /* CAMERA OFF AFTER CAPTURE */
+
+    if(stream){
+
+        stream.getTracks().forEach(track => track.stop());
+
+        video.srcObject = null;
+
+    }
+
+});
+
+/* FILE UPLOAD */
+
+fileUpload.addEventListener('change',(e)=>{
+
+    const file = e.target.files[0];
+
+    if(file){
+
+        const reader = new FileReader();
+
+        reader.onload = function(event){
+
+            previewImage.src = event.target.result;
+            previewImage.style.display = 'block';
+
+        }
+
+        reader.readAsDataURL(file);
+
+    }
+
+});
+
+/* DELETE PHOTO */
+
+deletePhoto.addEventListener('click',()=>{
+
+    previewImage.src = '';
+    previewImage.style.display = 'none';
+
+    fileUpload.value = '';
+
+});
+
+/* FORM SUBMIT */
+
+document.getElementById('studentForm')
+.addEventListener('submit',(e)=>{
+
+    e.preventDefault();
+
+    alert('Student Details Saved Successfully');
+
+});
+
+</script>
+
+</body>
+</html>
+
