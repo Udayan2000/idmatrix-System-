@@ -417,6 +417,10 @@ Open Camera
 Capture
 </button>
 
+<button type="button" class="btn btn-danger" id="switchCamera">
+Rotate Camera
+</button>
+
 </div>
 
 </div>
@@ -478,17 +482,30 @@ const captureBtn = document.getElementById('capturePhoto');
 const previewImage = document.getElementById('previewImage');
 const fileUpload = document.getElementById('fileUpload');
 const deletePhoto = document.getElementById('deletePhoto');
+const switchCameraBtn = document.getElementById('switchCamera');
 
 let stream = null;
 
-/* OPEN CAMERA */
+let currentFacingMode = "user";
 
-openCameraBtn.addEventListener('click', async () => {
+/* START CAMERA */
+
+async function startCamera() {
 
     try{
 
+        /* STOP PREVIOUS CAMERA */
+
+        if(stream){
+
+            stream.getTracks().forEach(track => track.stop());
+
+        }
+
         stream = await navigator.mediaDevices.getUserMedia({
-            video:true
+            video:{
+                facingMode: currentFacingMode
+            }
         });
 
         video.srcObject = stream;
@@ -499,11 +516,44 @@ openCameraBtn.addEventListener('click', async () => {
 
     }
 
+}
+
+/* OPEN CAMERA */
+
+openCameraBtn.addEventListener('click',()=>{
+
+    startCamera();
+
+});
+
+/* SWITCH CAMERA */
+
+switchCameraBtn.addEventListener('click', async ()=>{
+
+    if(currentFacingMode === "user"){
+
+        currentFacingMode = "environment";
+
+    }else{
+
+        currentFacingMode = "user";
+
+    }
+
+    await startCamera();
+
 });
 
 /* CAPTURE PHOTO */
 
 captureBtn.addEventListener('click', () => {
+
+    if(!video.srcObject){
+
+        alert('Please open camera first');
+        return;
+
+    }
 
     const canvas = document.createElement('canvas');
 
