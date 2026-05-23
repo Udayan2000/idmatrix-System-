@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Student Registration Form</title>
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="dashboard.css" />
+    </head>
+    <body>
+
+        <div class="dashboard-container">
+            <div class="dashboard-border">
+                <div class="table-topbar">
+
+                    <a class="back-btn" href="index.html">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Back
+                    </a>
+
+                    <div class="search-box">
+                        <input type="text"
+                            placeholder="Search candidate name...">
+                    </div>
+
+                    <button class="export-btn">
+                        <i class="fa-solid fa-arrow-down"></i> Export Data
+                    </button>
+
+                </div>
+                <div class="main-wrapper">
+                    <div class="table-container">
+
+                        <table class="student-table">
+                            <thead>
+                                <tr>
+                                    <th>Photo</th>
+                                    <th>Student Name</th>
+                                    <th>ID</th>
+                                    <th>Father's Name</th>
+                                    <th>Organization Name</th>
+                                    <th>Class</th>
+                                    <th>Phone</th>
+                                    <th>DOB</th>
+                                    <th>Address</th>
+                                    <th>Email</th>
+                                    <th>Blood</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img
+                                            src="https://i.pravatar.cc/100?img=12"
+                                            alt="Rahul Sharma"
+                                            class="table-profile">
+                                    </td>
+                                    <td>Rahul Sharma</td>
+                                    <td><span
+                                            class="student-id">ST2026-01</span></td>
+                                    <td class="father-name-column">Sharma</td>
+                                    <td class="father-name-column">Sharmaaa</td>
+                                    <td class="class-column">12</td>
+
+                                    <td class="phone-column">9876543210</td>
+
+                                    <td class="phone-column">18-05-2005</td>
+                                    <td>123 Main St, City, State</td>
+                                    <td>rahul@gmail.com</td>
+                                    <td><span class="blood-type">A+</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="action-btn view-btn"
+                                                title="View"
+                                                aria-label="View student"><i
+                                                    class="fa-solid fa-eye"></i></button>
+                                            <button class="action-btn edit-btn"
+                                                title="Edit"
+                                                aria-label="Edit student"><i
+                                                    class="fa-solid fa-pen-to-square"></i></button>
+                                            <button
+                                                class="action-btn delete-btn"
+                                                title="Delete"
+                                                aria-label="Delete student"><i
+                                                    class="fa-solid fa-delete-left"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
