@@ -1,371 +1,89 @@
-
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-        <title>Student Registration Form</title>
-
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-            rel="stylesheet">
-        <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
-        <link rel="stylesheet" href="style.css" />
-    </head>
-
-    <body>
-
-        <header class="header">
-            <div class="header-grid">
-                <h1 class="header-content">Professional Student ID Card Form
-                    System</h1>
-                <a href="dashboard.html" class="dashboard-link">
-                    <i class="fa-solid fa-table"></i>
-                    <p> Go To Dashboard</p>
-
-                </a>
-            </div>
-        </header>
-
-        <section class="main-section">
-            <div class="container">
-
-                <div class="form-header">
-                    <h1 class="candidate-textheading">Candidate
-                        Registration</h1>
-
-                </div>
-
-                <div class="formwrapper">
-
-                    <form id="studentForm">
-
-                        <div class="form-details-wrapper">
-
-                            <div class="form-section">
-
-                                <div class="form-grid">
-
-                                    <div class="input-group">
-                                        <label>Student Name</label>
-                                        <input type="text"
-                                            placeholder="Enter full name">
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label>Student ID</label>
-                                        <input type="text"
-                                            placeholder="Enter student ID">
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label>Father's Name</label>
-                                        <input type="text"
-                                            placeholder="Enter father's name">
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label>Organization Name</label>
-                                        <input type="text"
-                                            placeholder="Enter organization name">
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label>Email</label>
-                                        <input type="email"
-                                            placeholder="Enter email">
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label>Phone Number</label>
-                                        <input type="text"
-                                            placeholder="Enter phone number">
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label> Class</label>
-                                        <input type="text"
-                                            placeholder="Enter class">
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label>Section</label>
-                                        <input type="text"
-                                            placeholder="Enter course">
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label>Blood Group</label>
-                                        <select>
-                                            <option>Select Group</option>
-                                            <option>A+</option>
-                                            <option>B+</option>
-                                            <option>O+</option>
-                                            <option>AB+</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="input-group">
-                                        <label>Date of Birth</label>
-                                        <input type="date">
-                                    </div>
-
-                                </div>
-
-                                <div class="input-group">
-                                    <label>Address</label>
-                                    <textarea
-                                        placeholder="Enter address"></textarea>
-                                </div>
-                            </div>
-
-                            <div class="photo-section">
-
-                                <div class="photo-wrapper">
-                                    <div class="photo-camera-wrapper">
-
-                                        <div class="box">
-
-                                            <h3>Camera</h3>
-
-                                            <video id="video" autoplay
-                                                playsinline></video>
-
-                                        </div>
-
-                                        <div class="box">
-
-                                            <h3>Upload Image</h3>
-
-                                            <label class="upload-box"
-                                                for="fileUpload">
-                                                <div>
-                                                    <h2>📁</h2>
-                                                    <p>Click to Upload Image</p>
-                                                </div>
-                                            </label>
-
-                                            <input type="file" id="fileUpload"
-                                                class="file-input"
-                                                accept="image/*">
-
-                                        </div>
-                                    </div>
-
-                                    <div class="button-group">
-
-                                        <button type="button"
-                                            class="btn btn-primary"
-                                            id="openCamera">
-                                            Camera
-                                        </button>
-
-                                        <button type="button"
-                                            class="btn btn-secondary"
-                                            id="capturePhoto">
-                                            Capture
-                                        </button>
-
-                                        <button type="button"
-                                            class="btn btn-danger"
-                                            id="switchCamera">
-                                            Rotate
-                                        </button>
-
-                                    </div>
-                                </div>
-
-                                <div class="preview-image-wrapper">
-
-                                    <h3>Preview</h3>
-
-                                    <img id="previewImage"
-                                        class="preview-image"
-                                        style="display:none;">
-
-                                    <div class="button-group">
-
-                                        <button type="button"
-                                            class="btn btn-danger"
-                                            id="deletePhoto">
-                                            Delete Photo
-                                        </button>
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <!-- PHOTO SECTION -->
-                        <button type="submit" class="save-btn">
-                            Save Candidate Details
-                        </button>
-                    </form>
-                </div>
-
-            </div>
-
-            <div class="bg-shape shape1"></div>
-            <div class="bg-shape shape2"></div>
-        </section>
-
-        <script>
-
-const video = document.getElementById('video');
-const openCameraBtn = document.getElementById('openCamera');
-const captureBtn = document.getElementById('capturePhoto');
-const previewImage = document.getElementById('previewImage');
-const fileUpload = document.getElementById('fileUpload');
-const deletePhoto = document.getElementById('deletePhoto');
-const switchCameraBtn = document.getElementById('switchCamera');
-
-let stream = null;
-
-let currentFacingMode = "user";
-
-/* START CAMERA */
-
-async function startCamera() {
-
-    try{
-
-        /* STOP PREVIOUS CAMERA */
-
-        if(stream){
-
-            stream.getTracks().forEach(track => track.stop());
-
-        }
-
-        stream = await navigator.mediaDevices.getUserMedia({
-            video:{
-                facingMode: currentFacingMode
-            }
-        });
-
-        video.srcObject = stream;
-
-    }catch(error){
-
-        alert('Unable to access camera');
-
-    }
-
-}
-
-/* OPEN CAMERA */
-
-openCameraBtn.addEventListener('click',()=>{
-
-    startCamera();
-
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="StudentMS – School Student Management System" />
+<title>StudentMS – Student Management System</title>
+<link rel="stylesheet" href="assets/css/style.css" />
+<link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+<style>
+  .splash {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: var(--bg);
+  }
+  .splash-logo {
+    font-size: 64px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .splash-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--indigo2), var(--violet));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .splash-sub {
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .splash-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--surface3);
+    border-top-color: var(--indigo);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-top: 8px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+</style>
+</head>
+<body>
+<div class="splash">
+  <div class="splash-logo">🎓</div>
+  <div class="splash-title">StudentMS</div>
+  <div class="splash-sub">School Student Management System</div>
+  <div class="splash-spinner"></div>
+</div>
+
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-storage-compat.js"></script>
+
+<script src="assets/js/firebase/config.js"></script>
+<script src="assets/js/utils/helpers.js"></script>
+<script src="assets/js/utils/security.js"></script>
+<script src="assets/js/services/auth.service.js"></script>
+
+<script>
+'use strict';
+initFirebase();
+initTheme();
+
+// Smart redirect: authenticated → dashboard, else → login
+AuthService.onAuthStateChanged((user) => {
+  if (user) {
+    window.location.replace('dashboard.html');
+  } else {
+    window.location.replace('login.html');
+  }
 });
 
-/* SWITCH CAMERA */
-
-switchCameraBtn.addEventListener('click', async ()=>{
-
-    if(currentFacingMode === "user"){
-
-        currentFacingMode = "environment";
-
-    }else{
-
-        currentFacingMode = "user";
-
-    }
-
-    await startCamera();
-
-});
-
-/* CAPTURE PHOTO */
-
-captureBtn.addEventListener('click', () => {
-
-    if(!video.srcObject){
-
-        alert('Please open camera first');
-        return;
-
-    }
-
-    const canvas = document.createElement('canvas');
-
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-
-    const context = canvas.getContext('2d');
-
-    context.drawImage(video,0,0);
-
-    const imageData = canvas.toDataURL('image/png');
-
-    previewImage.src = imageData;
-    previewImage.style.display = 'block';
-
-    /* CAMERA OFF AFTER CAPTURE */
-
-    if(stream){
-
-        stream.getTracks().forEach(track => track.stop());
-
-        video.srcObject = null;
-
-    }
-
-});
-
-/* FILE UPLOAD */
-
-fileUpload.addEventListener('change',(e)=>{
-
-    const file = e.target.files[0];
-
-    if(file){
-
-        const reader = new FileReader();
-
-        reader.onload = function(event){
-
-            previewImage.src = event.target.result;
-            previewImage.style.display = 'block';
-
-        }
-
-        reader.readAsDataURL(file);
-
-    }
-
-});
-
-/* DELETE PHOTO */
-
-deletePhoto.addEventListener('click',()=>{
-
-    previewImage.src = '';
-    previewImage.style.display = 'none';
-
-    fileUpload.value = '';
-
-});
-
-/* FORM SUBMIT */
-
-document.getElementById('studentForm')
-.addEventListener('submit',(e)=>{
-
-    e.preventDefault();
-
-    alert('Student Details Saved Successfully');
-
-});
-
+// Fallback in case Firebase takes too long
+setTimeout(() => {
+  window.location.replace('login.html');
+}, 4000);
 </script>
-
-    </body>
+</body>
 </html>
